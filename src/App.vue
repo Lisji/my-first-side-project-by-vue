@@ -1,28 +1,39 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="homepage">
+      <img src="./assets/homepage/homepageBackground.jpg" class="homepage__background" alt="">
+      <div class="homepage__lock">
+
+      </div>
+      <div class="homepage__timeArea">
+        <div class="homepage__timeArea__time">
+
+        </div>
+        <div class="homepage__timeArea__date">
+
+        </div>
+        <div class="homepage__timeArea__chineseDate">
+
+        </div>
+      </div>
+      <div>
+
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss" scoped>
+  .homepage {
+    &__background {
+      height: 100%;
+    }
+  }
 </style>
