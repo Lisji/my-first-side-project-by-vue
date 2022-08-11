@@ -2,6 +2,7 @@
   <div id="app">
     <div class="homepage">
       <div class="homepage__lock">
+        <svg-icon icon-class="lock"></svg-icon>
       </div>
       <div class="homepage__timeArea">
         <div class="homepage__timeArea__time" v-html='`${date.hour}:${date.minute}`'/>
