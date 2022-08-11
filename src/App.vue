@@ -2,7 +2,7 @@
   <div id="app">
     <div class="homepage">
       <div class="homepage__lock">
-        <svg-icon icon-class="lock"></svg-icon>
+        <svg-icon icon-class="lock" class="homepage__lock__icon"/>
       </div>
       <div class="homepage__timeArea">
         <div class="homepage__timeArea__time" v-html='`${date.hour}:${date.minute}`'/>
@@ -18,13 +18,14 @@
 
 <script>
 const startTime = new Date()
+console.log(startTime.getMonth());
 
 export default {
   name: 'App',
   data() {
     return {
       date: {
-        month: startTime.getMonth(),
+        month: startTime.getMonth() + 1,
         date: startTime.getDate(),
         day: this.weekToChinese(startTime.getDay()),
         hour: this.zeroPadding(String(startTime.getHours())),
@@ -42,7 +43,7 @@ export default {
   methods: {
     updateTime() {
       const nowTime = new Date()
-      this.date.month = nowTime.getMonth()
+      this.date.month = nowTime.getMonth() + 1
       this.date.date = nowTime.getDate()
       this.date.day = this.weekToChinese(nowTime.getDay())
       this.date.hour = this.zeroPadding(String(nowTime.getHours()))
@@ -80,6 +81,20 @@ export default {
     background-repeat: no-repeat;
     background-size:cover;
     height: 100vh;
+
+    &__lock {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 0;
+
+      &__icon {
+          color: rgb(238, 238, 238);
+          width: 2em;
+          height: 2em;
+      }
+
+    }
 
     &__timeArea {
       color: rgb(238, 238, 238);
