@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <div class="homepage">
-      <img src="./assets/homepage/homepageBackground.jpg" class="homepage__background" alt="">
       <div class="homepage__lock">
-
       </div>
       <div class="homepage__timeArea">
         <div class="homepage__timeArea__time">
@@ -32,8 +30,11 @@ export default {
 
 <style lang="scss" scoped>
   .homepage {
-    &__background {
-      height: 100%;
-    }
+    background-image: url('./assets/homepage/homepageBackground.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size:cover;
+    height: 100vh;
   }
+
 </style>
