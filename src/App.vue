@@ -18,9 +18,10 @@
           :description=item.description
         />
       </div>
-      <div class="homepage__scrollDown">
-        <div class="homepage_scrollDown__icon">
-          ↓
+      <div class="homepage__nextEntry">
+        <ArrowComponent/>
+        <div class="homepage__nextEntry__text">
+          About me
         </div>
       </div>
     </div>
@@ -29,11 +30,10 @@
 
 <script>
 import NavItemComponent from './components/navItemComponent.vue';
+import ArrowComponent from './components/arrowComponent.vue';
 const startTime = new Date()
 
-// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
 let vh = window.innerHeight * 0.01;
-// Then we set the value in the --vh custom property to the root of the document
 document.documentElement.style.setProperty('--vh', `${vh}px`);
 
 export default {
@@ -71,7 +71,7 @@ export default {
   },
   mounted() {
     setInterval(this.updateTime, 1000);
-    document.documentElement.style.overflow = 'hidden';
+    // document.documentElement.style.overflow = 'hidden';
   },
   methods: {
     updateTime() {
@@ -110,20 +110,14 @@ export default {
       }
     }
   },
-  components: { 
-    NavItemComponent 
-  }
+  components: {
+    NavItemComponent,
+    ArrowComponent
+}
 }
 </script>
 
 <style lang="scss" scoped>
-  html, body {
-    overflow: hidden;
-  }
-
-  .scroll {
-    overflow: hidden;
-    }
 
   .homepage {
     background-color: rgba(0, 0, 0, .6);
@@ -174,12 +168,27 @@ export default {
       align-items: center;
     }
 
-    &__scrollDown {
-      position: absolute;
-      left: 50%;
-      bottom: 10px;
+    &__nextEntry {
+
+      &__text {
+        position: absolute;
+        left: 50%;
+        bottom: 2%;
+        animation: spark 1.6s infinite;
+        transform: translateX(-50%);
+      }
     }
-    
   }
 
+  @keyframes spark {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
 </style>
