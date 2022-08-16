@@ -1,5 +1,6 @@
 <template>
   <div class="homepage">
+    <!-- <div class="hover"></div> -->
     <div class="homepage__lock">
       <svg-icon icon-class="lock" class="homepage__lock__icon"/>
     </div>
@@ -30,6 +31,7 @@
 import NavItemComponent from '@/components/navItemComponent.vue';
 import ArrowComponent from '@/components/arrowComponent.vue';
 const startTime = new Date()
+
 
 let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -69,7 +71,6 @@ export default {
   },
   mounted() {
     setInterval(this.updateTime, 1000);
-    // document.documentElement.style.overflow = 'hidden';
   },
   methods: {
     updateTime() {
@@ -110,12 +111,13 @@ export default {
   },
   components: {
     NavItemComponent,
-    ArrowComponent
+    ArrowComponent,
   }
 }
 </script>
 
 <style lang="scss" scoped>
+
   .homepage {
     background-color: rgba(0, 0, 0, .6);
     background-image: url('@/assets/homepage/homepageBackground.jpg');
@@ -127,7 +129,6 @@ export default {
     height: calc(var(--vh, 1vh) * 100);
     color: rgb(238, 238, 238);
     
-
     &__lock {
       display: flex;
       align-items: center;
