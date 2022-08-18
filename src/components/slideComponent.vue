@@ -133,8 +133,10 @@ import SvgIcon from '@/components/SvgIcon.vue';
 
     &__controller {
       position: fixed;
+      z-index: 999;
       right: 10px;
       top: 50%;
+      transform: translateY(-50%);
       &__dot {
         color: rgb(238, 238, 238);
 
@@ -144,7 +146,7 @@ import SvgIcon from '@/components/SvgIcon.vue';
       }
 
       &__dot.active {
-        color: rgb(59, 7, 108);;
+        color: rgb(101, 58, 141);;
       }
     }
   }
