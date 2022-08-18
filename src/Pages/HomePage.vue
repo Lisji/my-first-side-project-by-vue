@@ -1,27 +1,28 @@
 <template>
   <div class="homepage">
-    <!-- <div class="hover"></div> -->
-    <div class="homepage__lock">
-      <svg-icon icon-class="lock" class="homepage__lock__icon"/>
-    </div>
-    <div class="homepage__timeArea">
-      <div class="homepage__timeArea__time" v-html='`${date.hour}:${date.minute}`'/>
-      <div class="homepage__timeArea__date" v-html='`${date.month}月${date.date}日 星期${date.day}`'/>
-      <div class="homepage__timeArea__chineseDate" v-html='`${date.lunarYear}年${date.lunarMonth}月${date.lunarDate}`'/>
-    </div>
-    <div class="homepage__nav">
-      <NavItemComponent 
-        v-for="item in nav"
-        :key= item.id
-        :image=item.image
-        :title=item.title
-        :description=item.description
-      />
-    </div>
-    <div class="homepage__nextEntry">
-      <ArrowComponent/>
-      <div class="homepage__nextEntry__text">
-        About me
+    <div class="homepage__container">
+      <div class="homepage__lock">
+        <svg-icon icon-class="lock" class="homepage__lock__icon"/>
+      </div>
+      <div class="homepage__timeArea">
+        <div class="homepage__timeArea__time" v-html='`${date.hour}:${date.minute}`'/>
+        <div class="homepage__timeArea__date" v-html='`${date.month}月${date.date}日 星期${date.day}`'/>
+        <div class="homepage__timeArea__chineseDate" v-html='`${date.lunarYear}年${date.lunarMonth}月${date.lunarDate}`'/>
+      </div>
+      <div class="homepage__nav">
+        <NavItemComponent 
+          v-for="item in nav"
+          :key=item.id
+          :image=item.image
+          :title=item.title
+          :description=item.description
+        />
+      </div>
+      <div class="homepage__nextEntry">
+        <ArrowComponent/>
+        <div class="homepage__nextEntry__text">
+          About me
+        </div>
       </div>
     </div>
   </div>
@@ -31,10 +32,6 @@
 import NavItemComponent from '@/components/navItemComponent.vue';
 import ArrowComponent from '@/components/arrowComponent.vue';
 const startTime = new Date()
-
-
-let vh = window.innerHeight * 0.01;
-document.documentElement.style.setProperty('--vh', `${vh}px`);
 
 export default {
   name: "App",
@@ -66,11 +63,16 @@ export default {
 
     };
   },
-  created() {
-    window.addEventListener("scroll", this.changeIcon);
+  components: {
+    NavItemComponent,
+    ArrowComponent,
   },
   mounted() {
     setInterval(this.updateTime, 1000);
+    window.addEventListener("resize", () => {
+      const container = document.querySelector('.homepage__container')
+      container.style.height = `${window.innerHeight}px`
+    });
   },
   methods: {
     updateTime() {
@@ -98,21 +100,8 @@ export default {
       const digits = ["", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
       let toChinese = tens[Number(dateString[0])] + digits[Number(dateString[1])];
       return toChinese;
-    },
-    changeIcon() {
-      const icon = document.querySelector(".homepage__lock__icon");
-      if (window.scrollY > 10) {
-        icon.innerHTML = "<use xlink:href=\"#icon-unlock\"></use>";
-      }
-      else {
-        icon.innerHTML = "<use xlink:href=\"#icon-lock\"></use>";
-      }
     }
   },
-  components: {
-    NavItemComponent,
-    ArrowComponent,
-  }
 }
 </script>
 
@@ -125,9 +114,12 @@ export default {
     background-position: center center;
     background-repeat: no-repeat;
     background-size:cover;
-    height: 100vh;
     height: calc(var(--vh, 1vh) * 100);
     color: rgb(238, 238, 238);
+
+    &__container {
+      height: calc(var(--vh, 1vh) * 100);
+    }
     
     &__lock {
       display: flex;

@@ -1,5 +1,5 @@
 <template>
-  <div class="navItem">
+  <div class="navItem" @click.stop="test">
     <img :src="require(`@/assets/${image}`)" class="navItem__icon">
     <div class="navItem__content">
       <div class="navItem__content__title" v-html="title"/>
@@ -22,6 +22,11 @@
       description: {
         type: String,
         required: true
+      }
+    },
+    methods: {
+      test() {
+        console.log(123);
       }
     }
   }
