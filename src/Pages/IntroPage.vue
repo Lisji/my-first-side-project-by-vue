@@ -93,6 +93,7 @@ import SocialmediaComponent from '@/components/socialmediaComponent.vue';
       text-align: center;
       color: rgb(238, 238, 238);
       font-size: 0.8em;
+      margin: 0px 30px;
     }
   }
 </style>

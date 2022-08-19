@@ -26,7 +26,7 @@
     },
     methods: {
       test() {
-        console.log(123);
+        window.location.href = '/?index=1'
       }
     }
   }

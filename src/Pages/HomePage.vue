@@ -57,7 +57,7 @@ export default {
         article: {
           image: "homepage/article.png",
           title: "文章",
-          description: "生活紀錄 | 技術分享 | 心情日記"
+          description: "生活紀錄 | 技術交流 | 心情日記"
         }
       }
 
