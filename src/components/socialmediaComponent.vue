@@ -70,7 +70,6 @@ export default {
       width: 30px;
       height: 30px;
       margin: 0px 8px;
-      padding: 20px 0;
 
       &.withFloat {
         display: flex;
