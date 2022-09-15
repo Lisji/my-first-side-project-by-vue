@@ -2,9 +2,21 @@
   <div class="navComponent">
     <div class="navComponent__blocker"></div>
     <div class="navComponent__container">
-      <div @click="emi" class="navComponent__navButton">
-        <svg-icon icon-class="home"/>
-      </div>
+      <router-link to="/blog/weather">
+        <div class="navComponent__navButton">
+          <svg-icon icon-class="cloud"/>
+        </div>
+      </router-link>
+      <router-link to="/blog">
+        <div class="navComponent__navButton">
+          <svg-icon icon-class="article"/>
+        </div>
+      </router-link>
+      <router-link to="/">
+        <div class="navComponent__navButton">
+          <svg-icon icon-class="home"/>
+        </div>
+      </router-link>
       <div @click="emi" class="navComponent__navButton">
         <svg-icon icon-class="subNav"/>
       </div>

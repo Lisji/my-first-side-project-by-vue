@@ -1,11 +1,12 @@
 <template>
   <div class="blogPage">
     <NavComponent @emi="emi"></NavComponent>
+
     <div class="blogPage__container">
       <slot></slot>     
     </div>
     <BlogSubNavComponent
-      :isSubNavActive=isSubNavActive
+    :isSubNavActive=isSubNavActive
     ></BlogSubNavComponent>
   </div>
 </template>
@@ -46,6 +47,7 @@ import BlogSubNavComponent from './blogSubNavComponent.vue';
     &__container {
       width: 100vw;
     }
+
   }
 
   @media (max-width: 480px) {

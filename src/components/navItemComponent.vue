@@ -1,11 +1,14 @@
 <template>
-  <div class="navItem" @click.stop="test">
-    <img :src="require(`@/assets/${image}`)" class="navItem__icon">
-    <div class="navItem__content">
-      <div class="navItem__content__title" v-html="title"/>
-      <div class="navItem__content__description" v-html="description"/>
+  <a :href=link>
+    <div class="navItem">
+      <img :src="require(`@/assets/${image}`)" class="navItem__icon">
+      <div class="navItem__content">
+        <div class="navItem__content__title" v-html="title"/>
+        <div class="navItem__content__description" v-html="description"/>
+      </div>
     </div>
-  </div>
+  </a>
+
 </template>
 
 <script>
@@ -22,17 +25,20 @@
       description: {
         type: String,
         required: true
-      }
-    },
-    methods: {
-      test() {
-        window.location.href = '/?index=1'
+      },
+      link: {
+        default: "/blog"
       }
     }
   }
 </script>
 
 <style lang="scss" scoped>
+
+a {
+  text-decoration: none;
+  color: unset;
+}
 
 .navItem {
   display: flex;

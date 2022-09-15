@@ -48,6 +48,10 @@ import SocialmediaComponent from '@/components/socialmediaComponent.vue';
     align-items: center;
     justify-content: center;
 
+    &__socialmedia {
+      padding: 10px 0 ;
+    }
+
     &__headshot {
       display: flex;
       align-items: center;

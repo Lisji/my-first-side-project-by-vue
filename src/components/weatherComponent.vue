@@ -42,12 +42,7 @@
           <div class="weatherComponent__text" v-html="date"/>
         </div>
       </WeatherCardCompent>
-  
-      <!-- <WeatherCardCompent
-        :cardName=timeText
-      >
-        <div class="weatherComponent__text" v-html="time"/>
-      </WeatherCardCompent> -->
+
       <WeatherCardCompent
         :cardName=maxTemperatureText
       >

@@ -1,5 +1,6 @@
 <template>
   <div class="blogSubNavComponent">
+    
     <div 
       v-if="isSubNavActive"
       class="blogSubNavBlocker"/>
@@ -17,15 +18,16 @@
         <div class="blogSubNav__container__name" v-html="userName"/>
         <SocialmediaComponent/>
         <div class="blogSubNav__container__article">
-          <div class="article" v-for="index in count" :key="index.id">
-            <div class="title">
-              日月潭遊記
-            </div>
-            <div class="description">
-              近日與家人共遊日月潭，搭乘從日月潭開往九族文化村的纜車，俯瞰日月潭，翠綠的山丘環繞著波光粼粼的湖面，畫面讓人不經想起古文《晚游六橋待月記》
-            </div>
-            <div class="articleImage"></div>
+          <div  v-for="index in count" :key="index.id">
+            <a :href="`/blog/article/${(index - 1) % 8}`">
+              <div class="article">
+                <div class="title" v-html="articleData[(index - 1) % 8].title"/>
+                <div class="description" v-html="articleData[(index - 1) % 8].description"/>
+                <div class="articleImage"></div>
+              </div>
+            </a>
           </div>
+
         </div>
         <div class="blogSubNav__container__subscribe">
           <input type="text" class="subscribe__input" placeholder="請輸入信箱">
@@ -38,9 +40,11 @@
 
 <script>
 import SocialmediaComponent from './socialmediaComponent.vue';
+import articleData from '../article'
   export default {
     data() {
       return {
+        articleData,
         userName: "湯智偉",
         count: 0,
       }
@@ -56,21 +60,20 @@ import SocialmediaComponent from './socialmediaComponent.vue';
       SocialmediaComponent
     },
     mounted() {
-      window.addEventListener('load', () => {
-        let leave = window.innerHeight - 260;
-        this.count = Number(Math.floor(leave / 90)) - 1;
-      })
+      let leave = window.innerHeight - 260;
+      this.count = Number(Math.floor(leave / 90)) - 1;
       window.addEventListener('resize', () => {
         let leave = window.innerHeight - 250;
         this.count = Number(Math.floor(leave / 90)) - 1;
       })
-      // window.innerWidth > 480 ? this.isSubNavActive = true : this.isSubNavActive = false
     },
   }
 </script>
 
 <style lang="scss" scoped>
-
+  a {
+    text-decoration: none;
+  }
 
   .blogSubNavBlocker {
     width: 300px;
@@ -128,6 +131,11 @@ import SocialmediaComponent from './socialmediaComponent.vue';
           border: 1.5px solid #fff;
           border-radius: 8px;
           color: #fff;
+        }
+        .title {
+          overflow:hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
         }
 
         .description {

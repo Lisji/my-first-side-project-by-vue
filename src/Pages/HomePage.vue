@@ -16,6 +16,7 @@
           :image=item.image
           :title=item.title
           :description=item.description
+          :link=item.link
         />
       </div>
       <div class="homepage__nextEntry">
@@ -52,12 +53,14 @@ export default {
         aboutMe: {
           image: "homepage/programmer.png",
           title: "關於我",
-          description: "我的自我介紹"
+          description: "我的自我介紹",
+          link: '/?index=1'
         },
         article: {
           image: "homepage/article.png",
           title: "文章",
-          description: "生活紀錄 | 技術交流 | 心情日記"
+          description: "生活紀錄 | 技術交流 | 心情日記",
+          link: "/blog"
         }
       }
 
@@ -69,10 +72,11 @@ export default {
   },
   mounted() {
     setInterval(this.updateTime, 1000);
-    window.addEventListener("resize", () => {
-      const container = document.querySelector('.homepage__container')
-      container.style.height = `${window.innerHeight}px`
-    });
+    this.test();
+    window.addEventListener("resize", this.test);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.test);
   },
   methods: {
     updateTime() {
@@ -100,6 +104,10 @@ export default {
       const digits = ["", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
       let toChinese = tens[Number(dateString[0])] + digits[Number(dateString[1])];
       return toChinese;
+    },
+    test() {
+      const container = document.querySelector('.homepage__container')
+      container.style.height = `${window.innerHeight}px`
     }
   },
 }
@@ -115,6 +123,7 @@ export default {
     background-repeat: no-repeat;
     background-size:cover;
     height: calc(var(--vh, 1vh) * 100);
+    
     color: rgb(238, 238, 238);
 
     &__container {

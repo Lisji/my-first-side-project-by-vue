@@ -37,14 +37,7 @@ import SvgIcon from '@/components/SvgIcon.vue';
       this.slides = slides
       slides[this.nowAt].classList.add('active')
       window.scrollTo(0, slides[this.nowAt].offsetTop)
-
-      window.addEventListener("resize", () => {
-        slides.forEach(slide => {
-          slide.style.height = `${window.innerHeight}px`
-          window.scrollTo(0, slides[this.nowAt].offsetTop)
-        })
-      });
-
+      window.addEventListener("resize", this.test(this.slides));
       slides.forEach(slide => {        
         let startY
         let endY
@@ -67,10 +60,22 @@ import SvgIcon from '@/components/SvgIcon.vue';
         })
       })
     },
+    destroyed() {
+      document.documentElement.style.overflow = 'scroll'
+      window.removeEventListener("resize", this.test);
+    },
     methods: {
-      closeOverflowScroll(){
-        document.querySelector("body").style.overflow = "hidden";
-        
+      closeOverflowScroll() {
+        document.documentElement.style.overflow = 'hidden'
+      },
+      test(slides) {
+        // console.log(123);
+        slides.forEach(slide => {
+          // console.log(slide);
+          console.log(window.innerHeight);
+          slide.style.height = `${window.innerHeight}px`
+          window.scrollTo(0, slides[this.nowAt].offsetTop)
+        })
       },
       routePusher(nowAt) {
         this.$router.push({path: this.$route.path, query: {index: nowAt}});
